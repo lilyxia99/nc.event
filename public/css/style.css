@@ -21,6 +21,8 @@
 
 /* Takes precedence over FullCalendar's  styling. */
 :root {
+  --title-font:"Jersey 10", sans-serif;
+  --body-font:'Exo 2', 'Times New Roman', 'Georgia', serif;
   --fc-page-bg-color: var(--background);
   --fc-border-color: var(--background-inner);
   --fc-neutral-text-color: var(--text-faded);
@@ -72,8 +74,8 @@ body {
   background-repeat: repeat;
   margin: 0;
   height: 100%;
-  font-family: 'Exo 2', 'Times New Roman', 'Georgia', serif;
-  font-size: 12px;
+  font-family: --var(--body-font);
+  font-size: 14px;
   font-weight: normal;
   color: var(--text-normal);
 }
@@ -102,7 +104,12 @@ fc-theme-standard td,
 }
 
 .fc-header-toolbar {
+  font-family: var(--title-font);
   text-align: center;
+}
+
+.fc{
+  font-family: var(--body-font);
 }
 
 .fc .fc-toolbar.fc-header-toolbar {
@@ -317,6 +324,7 @@ div.fc-scrollgrid-sync-inner:not(.fc-daygrid-day-frame) {
 }
 
 .blurb-sub {
+  font-family: var(--body-font);
   font-size: min(1.2em);
   text-align: center;
   color: var(--text-normal);
@@ -339,7 +347,7 @@ div.fc-scrollgrid-sync-inner:not(.fc-daygrid-day-frame) {
 
 .desc {
   /* This causes issues with fc-h-events */
-  font-family: 'OpenDyslexic', serif;
+  font-family: var(--body-font);
   padding: 18px;
   font-size: min(1em);
   color: var(--text-normal);
@@ -464,6 +472,11 @@ body.no-scroll {
 :root .fc .fc-daygrid-day-number {
   text-decoration: dashed underline;
   color: var(--text-normal);
+}
+
+.vfm__content{
+  font-family: var(--body-font);
+  
 }
 
 .event-details {
