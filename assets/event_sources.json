@@ -111,16 +111,7 @@
                 ["biking"]
             ]
         },
-        {
-            "name": "Coalition Theater",
-            "googleCalendarId": "r1funfuomjmgs47jph9faksu32iu7ktb@import.calendar.google.com",
-            "prefixTitle": ":coalition_theater: ",
-            "suffixTitle": "",
-            "filters": [
-                ["nonprofit"],
-                ["theater"]
-            ]
-        },
+        
         {
             "name": "hackRVA",
             "googleCalendarId": "hack.rva@gmail.com",
@@ -147,7 +138,7 @@
         
         {
             "name": "@rvaqueerbookclub",
-            "googleCalendarId": "63b6eb40d80e3feaec30d2d5bfcf3450aeb45bae641366a91c37bbc422be3bb1@group.calendar.google.com",
+            "googleCalendarId": "0d0f28e1f0a3bcab9a47120deefdcec2b12b5ebe15c6f33af9511a4192404af3@group.calendar.google.com",
             "prefixTitle": "🌈📚 ",
             "filters": [
                 ["community"],
@@ -166,145 +157,19 @@
         },
         
         {
-            "name": "Rag and Bones Bicycle Cooperative",
-            "googleCalendarId": "ragandbonesvolunteers@gmail.com",
-            "prefixTitle": "🛠🚲 ",
-            "suffixTitle": " | Rag & Bones Bicycle Cooperative",
-            "defaultLocation": "2916 North Avenue, Richmond VA 23230",
-            "suffixDescription": "<br /> <a href=\"https://ragandbonesrva.org/\">Website</a> | <a href=\"https://www.instagram.com/ragandbonesrva/\">Instagram</a> | <a href=\"https://www.facebook.com/RagBonesBicycleCoOp/\">Facebook</a>",
-            "filters": [
-                ["community"],
-                [["diy","biking"], "Open Hours", "title"],
-                ["music", "Benefit", ["title","description"]]
-            ]
-        },
-        {
-            "name": "New Habit Cinema",
-            "googleCalendarId": "01cd966b384a29a5d1f8f341f8bb7aa56cad3b0233d0b20402a30ac640691690@group.calendar.google.com",
-            "prefixTitle": "📽️",
-            "suffixDescription": "<br /><a href=\"https://www.instagram.com/newhabitcinema/\">Instagram</a>",
-            "filters": [
-                ["community"],
-                ["movies"]
-            ]
-        },
-        {
-            "name": "Continuity Press",
-            "googleCalendarId": "de72cf999d4da30155c68eb7040ede22c0540275b3a884e355482100ec744765@group.calendar.google.com",
-            "prefixTitle": "♾️ ",
-            "suffixTitle": " | Continuity Press",
-            "filters": [
-                ["community"],
-                ["diy"]
-            ]
-        },
-        {
-            "name": "James River Anarchist Black Cross",
-            "googleCalendarId": "jrabc1312@gmail.com",
-            "prefixTitle": ":jrabc: ",
-            "suffixTitle": "",
-            "filters": [
-                ["community"],
-                ["organizing"],
-                ["socialism"],
-                ["discussion", "salon", "title"]
-            ]
-        },
-        {
-            "name": "Girlspit",
-            "googleCalendarId": "6beec3f66bcf6792c6920b8a59f5e1e8a736582c613a9e74e8189008f47d6dd6@group.calendar.google.com",
-            "prefixTitle": "",
-            "suffixTitle": "",
-            "filters": [
-                ["community"],
-                ["music"],
-                ["lgbtq"]
-            ]
-        },
-        {
-            "name": "🎵 RVA Community Sing",
-            "googleCalendarId": "905d99152584dc38b5565e9cdd3beb88b30e02bb8998164fc489563414795bbb@group.calendar.google.com",
-            "filters": [
-                ["community"],
-                ["singing"]
-            ]
-        },
-        {
-            "name": "🏳️‍⚧️ Layers of Change",
-            "googleCalendarId": "6c7cd3cc0e9ff43a606292aafed9b215b100cab9d53c4892e651651abe13cf07@group.calendar.google.com",
-            "prefixTitle": ":layersofchange: ",
-            "filters": [
-                ["community"],
-                ["transgender"],
-                ["lgbtq"]
-            ]
-        },
-        {
-            "name": "🏳️‍⚧️ Trans Jam Events",
-            "googleCalendarId": "ff1e734c712e4c89069f15ee40a875e77f8e12844a1e398dae8ea19964407d70@group.calendar.google.com",
-            "prefixTitle": ":transjam:🏳️‍⚧️ ",
-            "filters": [
-                ["community"],
-                ["transgender"],
-                ["lgbtq"]
-            ]
-        },
-        {
-            "name": "🚲🕯️ Secret Bike Club",
-            "googleCalendarId": "6d2ce8d9e9d3821a56e2ef91cadbbd8791bf34891a90380787874cbb8c60aa45@group.calendar.google.com",
-            "filters": [
-                ["community"],
-                ["biking"]
-            ]
-        },
-        {
-            "name": "Known Contributor Rebel Rouser",
-            "googleCalendarId": "3940f9dd4d7b006ada3c8643edafb9846fa182792ed08f376c107e18d05b3289@group.calendar.google.com",
-            "prefixTitle": "👠 ",
-            "filters": [
-                ["commercial"],
-                ["drag"]
-            ]
-        },
-        {
-            "name": "Queer Moto Club",
-            "googleCalendarId": "c_9efc326dbf0b9bc343d75d0192ff495be45a2f82c9c3b98dbe5c59fa059a6118@group.calendar.google.com",
-            "prefixTitle": "🏍️ ",
+            "name": "Gaymer's Night @ Dragon's Hoard",
+            "googleCalendarId": "0d0f28e1f0a3bcab9a47120deefdcec2b12b5ebe15c6f33af9511a4192404af3@group.calendar.google.com",
+            "prefixTitle": ":game: ",
+            "suffixTitle": "Gaymer's Night @ Dragon's Hoard",
+            "suffixDescription":"discord group: <a href=\"https://discord.gg/dragonshoard\">https://discord.gg/dragonshoard</a>",
+            "defaultLocation": " 4645 W Market St Suite A2, Greensboro, NC 27407",
             "filters": [
                 ["community"],
                 ["lgbtq"],
-                ["motorcycles"],
-                ["Invisible", "Members Only", ["title"]]
-            ]
-        },
-        {
-            "name": "RVA4Palestine Coalition Events",
-            "googleCalendarId": "rva4palestine@gmail.com",
-            "prefixTitle": ":rva4pal: ",
-            "filters": [
-                ["community"],
-                ["palestine"],
-                ["art", "chalk", "title"],
-                ["organizing", "teach-in", "title"],
-                ["organizing", "city council", "title"],
-                ["organizing", "meeting", "title"],
-                ["organizing", "tenant", "title"],
-                ["organizing", "training", "title"],
-                ["socialism", " rwa", "title"],
-                ["socialism", "richmond worker", ["title","description"]],
-                ["exercise", "team hind", ["title","description"]]
-            ]
-        },
-        {
-            "name": "RVA Participatory Budgeting Public Calendar https://rvapb.org",
-            "googleCalendarId": "c_c7163d30a9f2e96724bf3856aa814f56e83300945a648bd5a04f2fb291da6917@group.calendar.google.com",
-            "prefixTitle": ":rvapb: ",
-            "filters": [
-                ["nonprofit"],
-                ["organizing"],
-                ["volunteering"]
+                ["games"]
             ]
         }
+        
     ],
     "squarespace": [
         {
