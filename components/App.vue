@@ -517,7 +517,7 @@ const transformEventSourcesResponse = (eventSources: Ref<Record<string, any>>) =
   <ModalsContainer />
   <EventTooltip 
     :event="tooltipEvent" 
-    :visible="tooltipVisible && !isFreeDragMode" 
+    :visible="tooltipVisible" 
     :x="tooltipX" 
     :y="tooltipY" 
     @tooltip-enter="handleTooltipEnter"
