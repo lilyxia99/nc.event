@@ -67,7 +67,7 @@ const getImageClass = (index) => {
       <div v-if="isDevelopment && eventImages && eventImages.length > 0">
         <span class="event-headers">Event Images (Debug):</span><br>
         <div v-for="(imageUrl, index) in eventImages" :key="index" style="margin: 5px 0;">
-          <img :src="imageUrl" :alt="`Debug image ${index + 1}`" style="max-width: 200px; max-height: 150px; border: 1px solid var(--border-outer);" @error="() => console.log('Failed to load debug image:', imageUrl)">
+          <img :src="`/api/fetchImage?url=${encodeURIComponent(imageUrl)}`" :alt="`Debug image ${index + 1}`" style="max-width: 200px; max-height: 150px; border: 1px solid var(--border-outer);" @error="() => console.log('Failed to load debug image:', imageUrl)">
         </div>
       </div>
       <span v-if="isDevelopment"> <span class="event-headers">Event Tags: </span> {{ eventTags }}<br> </span>
