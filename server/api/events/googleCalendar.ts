@@ -148,4 +148,4 @@ function formatTitleAndDateToID(inputDate: any, title: string) {
 	console.log('Returning Google Calendar sources:', googleCalendarSources?.length || 0, 'sources');
 	return googleCalendarSources || [];
   }
-  
+});
