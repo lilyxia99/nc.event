@@ -2,8 +2,8 @@ import eventSourcesJSON from '@/assets/event_sources.json';
 import { logTimeElapsedSince, serverCacheMaxAgeSeconds, serverStaleWhileInvalidateSeconds, serverFetchHeaders, applyEventTags } from '@/utils/util';
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-export default defineCachedEventHandler(async (event) => {
-	// export default defineEventHandler(async (event) => {
+// export default defineCachedEventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
 	const startTime = new Date();
 	//Adding .env processing
 	if (typeof process.env.EVENT_SOURCES_ENV === 'string') {
@@ -21,11 +21,11 @@ export default defineCachedEventHandler(async (event) => {
 	return {
 		body
 	}
-}, {
-	maxAge: serverCacheMaxAgeSeconds,
-	staleMaxAge: serverStaleWhileInvalidateSeconds,
-	swr: true,
-});
+// }, {
+// 	maxAge: serverCacheMaxAgeSeconds,
+// 	staleMaxAge: serverStaleWhileInvalidateSeconds,
+// 	swr: true,
+// });
 
 // Function to replace Google tracking URLs with the actual URL
 function replaceGoogleTrackingUrls(description: string): string {
