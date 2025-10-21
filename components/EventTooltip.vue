@@ -9,13 +9,14 @@ const props = defineProps<{
   y: number
 }>()
 
-// Process event data similar to EventModal
-const eventTitle = replaceBadgePlaceholders(props.event.title);
-const eventTime = props.event.start.toLocaleDateString() + ' @ ' + 
-                  props.event.start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-const eventHost = props.event.extendedProps.org;
-const eventLocation = props.event.extendedProps.location;
-const rawDescription = props.event.extendedProps.description;
+// Process event data similar to EventModal with null checks
+const eventTitle = props.event ? replaceBadgePlaceholders(props.event.title) : '';
+const eventTime = props.event && props.event.start 
+  ? props.event.start.toLocaleDateString() + ' @ ' + props.event.start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+  : '';
+const eventHost = props.event?.extendedProps?.org || '';
+const eventLocation = props.event?.extendedProps?.location || '';
+const rawDescription = props.event?.extendedProps?.description;
 const eventDescription = rawDescription && rawDescription.trim() 
   ? replaceBadgePlaceholders(sanitizeHtml(rawDescription))
   : "needs to be added";
@@ -28,7 +29,7 @@ const truncatedDescription = eventDescription.length > 200
 
 <template>
   <div 
-    v-if="visible" 
+    v-if="visible && event" 
     class="event-tooltip"
     :style="{ left: x + 'px', top: y + 'px' }"
   >
