@@ -34,11 +34,26 @@ const truncatedDescription = eventDescription.length > 200
     :style="{ left: x + 'px', top: y + 'px' }"
   >
     <div class="tooltip-content">
-      <div class="tooltip-title" v-html="eventTitle"></div>
-      <div class="tooltip-time">{{ eventTime }}</div>
-      <div class="tooltip-host">{{ eventHost }}</div>
-      <div class="tooltip-location">{{ eventLocation }}</div>
-      <div class="tooltip-description" v-html="truncatedDescription"></div>
+      <div class="tooltip-section">
+        <span class="tooltip-label">Event Title:</span> 
+        <span class="tooltip-title" v-html="eventTitle"></span>
+      </div>
+      <div class="tooltip-section">
+        <span class="tooltip-label">Event Time:</span> 
+        <span class="tooltip-time">{{ eventTime }}</span>
+      </div>
+      <div class="tooltip-section">
+        <span class="tooltip-label">Event Host:</span> 
+        <span class="tooltip-host">{{ eventHost }}</span>
+      </div>
+      <div class="tooltip-section">
+        <span class="tooltip-label">Event Location:</span> 
+        <span class="tooltip-location">{{ eventLocation }}</span>
+      </div>
+      <div class="tooltip-section">
+        <span class="tooltip-label">Event Description:</span>
+        <div class="tooltip-description" v-html="truncatedDescription"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -48,7 +63,9 @@ const truncatedDescription = eventDescription.length > 200
   position: fixed;
   z-index: 1000;
   pointer-events: none;
-  max-width: 300px;
+  max-width: 350px;
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 .tooltip-content {
@@ -62,31 +79,40 @@ const truncatedDescription = eventDescription.length > 200
   color: var(--text-normal);
 }
 
+.tooltip-section {
+  margin-bottom: 8px;
+}
+
+.tooltip-label {
+  font-weight: bold;
+  color: var(--text-normal);
+  font-size: 13px;
+}
+
 .tooltip-title {
   font-weight: bold;
   font-size: 14px;
-  margin-bottom: 6px;
   color: var(--text-normal);
 }
 
 .tooltip-time {
-  color: var(--text-faded);
-  margin-bottom: 4px;
+  color: var(--text-normal);
 }
 
 .tooltip-host {
   font-weight: 500;
-  margin-bottom: 4px;
+  color: var(--text-normal);
 }
 
 .tooltip-location {
-  color: var(--text-faded);
-  margin-bottom: 8px;
+  color: var(--text-normal);
 }
 
 .tooltip-description {
   line-height: 1.4;
-  max-height: 100px;
+  max-height: 150px;
   overflow: hidden;
+  color: var(--text-normal);
+  margin-top: 4px;
 }
 </style>
