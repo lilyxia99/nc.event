@@ -76,8 +76,6 @@ function createGoogleMapsURL(location) {
 
 // Dragging functionality
 const startDrag = (event) => {
-  if (isMinimized.value) return;
-  
   isDragging.value = true;
   const rect = windowRef.value.getBoundingClientRect();
   dragOffset.value = {
