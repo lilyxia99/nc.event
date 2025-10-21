@@ -234,7 +234,7 @@ calendarOptions.value = {
     // Don't immediately hide - let tooltip mouse events handle it
     tooltipTimeout = setTimeout(() => {
       tooltipVisible.value = false;
-    }, 100); // Small delay to allow moving to tooltip
+    }, 300); // Longer delay to allow moving to tooltip
   },
 
   progressiveEventRendering: true, // More re-renders; not batched. Needs further testing.

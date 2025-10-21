@@ -122,7 +122,7 @@ const getImageClass = (index) => {
   max-width: 400px;
   max-height: 500px;
   overflow-y: auto;
-  transform: translate(-10px, -10px); /* Position tooltip slightly offset from cursor */
+  transform: translate(5px, 5px); /* Position tooltip closer to cursor */
 }
 
 .tooltip-content {
