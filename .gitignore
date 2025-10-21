@@ -10,3 +10,4 @@ dist
 localhost.pem
 localhost-key.pem
 
+.aider*

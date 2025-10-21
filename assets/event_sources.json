@@ -81,22 +81,7 @@
                 ["unknownType", "This is a tag inserted for code purposes, this tag represents all tags which won't be categorized", "title"]
             ]
         },
-        {
-            "name": "Burning Van",
-            "googleCalendarId": "burningvan69@gmail.com",
-            "filters": [
-                ["community"],
-                ["biking"]
-            ]
-        },
-        {
-            "name": "Anonymous Contributor CB",
-            "googleCalendarId": "657b8cf1729356210e21d20c93e7696cd90fc8c06e32e22b0bc137318b8b0c00@group.calendar.google.com",
-            "filters": [
-                ["community"],
-                ["theater", "PLAY", "title"]
-            ]
-        },
+        
         {
             "name": "Food Not Bombs",
             "googleCalendarId": "2eb28d433a637a4d0ba2d2969fa9ccbd7042d83f5992ff0aaafb01d70a299884@group.calendar.google.com",
@@ -107,53 +92,16 @@
             ]
         },
         {
-            "name": "RVA Queer Soccer",
-            "googleCalendarId": "rvaqueersoccer@gmail.com",
-            "filters": [
-                ["community"],
-                ["soccer"],
-                ["lgbtq"]
-            ]
-        },
-        {
-            "name": "James River Park Cleanup",
-            "googleCalendarId": "029ddcdb1317ef7c5c4aa1ea53964073e72ae633462e014c83332f6ba0c91b41@group.calendar.google.com",
-            "prefixTitle": ":fojrp: ",
+            "name": "Test calendar",
+            "googleCalendarId": "4536d8c77c3992f3aadb5dbed61ee50248b4cfc7eda9ac11e6da55f14be52488@group.calendar.google.com",
+            "prefixTitle": ":test: ",
             "filters": [
                 ["nonprofit"],
                 ["ecology"],
                 ["volunteering"]
             ]
         },
-        {
-            "name": "RVA.RIP Major Update Announcements",
-            "googleCalendarId": "2847685acc28b260c69a05bd948038fffe1b00cc12424b6a35ef39480a3900c1@group.calendar.google.com",
-            "prefixTitle": ":ripple: ",
-            "filters": [
-                ["community"],
-                ["announcement"]
-            ]
-        },
-        {
-            "name": "MADRVA",
-            "googleCalendarId": "7332d16dfa04b8b3e944e462f6dc832d5559036dbc9f15d9803f04d61ce5ad7d@group.calendar.google.com",
-            "prefixTitle": ":madrva:",
-            "filters": [
-                ["community"],
-                ["volunteering", "Free Store", "title"],
-                ["free stuff", "Free Store", "title"]
-            ]
-        },
-        {
-            "name": "C's Weekly Rides Calendar",
-            "googleCalendarId": "999072f138be452067352af67a3cc0370c7594ef8b8ae19fd4d73d3cd9471032@group.calendar.google.com",
-            "filters": [
-                ["community"],
-                ["biking"],
-                ["sobriety", "🚭", "title"],
-                [["lgbtq"], "🏳️‍🌈", "title"]
-            ]
-        },
+        
         {
             "name": "Reasonable Morning Ride",
             "googleCalendarId": "56042348356c1aa89c4783614ea1ffe2414edd1717568c161e0c6ab4415c4423@group.calendar.google.com",
@@ -184,25 +132,8 @@
                 ["invisible"]
             ]
         },
-        {
-            "name": "Kasama Collective",
-            "googleCalendarId": "c0ba770604500783fe65753bbbdd682b55b6bd50ad656c92706426758e5251b8@group.calendar.google.com",
-            "prefixTitle": ":kasamacollective: ",
-            "filters": [
-                ["commercial"],
-                ["market"]
-            ]
-        },
-        {
-            "name": "Outpost Adventure Club Calendar",
-            "googleCalendarId": "info@outpostrichmond.com",
-            "prefixTitle": ":outpost: ",
-            "filters": [
-                ["community"],
-                ["biking"],
-                [["invisible"], "microsoft teams", "description"]
-            ]
-        },
+        
+        
         {
             "name": "PSL Virginia @pslvirginia",
             "googleCalendarId": "7c07b5d92633673b1409ee65d643ddfde18cf257323136f95c9ceb3e5afda5de@group.calendar.google.com",
@@ -213,44 +144,7 @@
                 ["socialism"]
             ]
         },
-        {
-            "name": "Gold Lion Cafe",
-            "googleCalendarId": "c_0e01d5366281ee1230a34c41e4f988fac5cb94324aec20d86f035457d14722df@group.calendar.google.com",
-            "prefixTitle": ":goldlion: ",
-            "defaultLocation": "1012 Hull St, Richmond, VA 23224, USA",
-            "filters": [
-                ["invisible", "undefined", "title"],
-                [["music"], "Concert", ["title","description"]],
-                ["invisible", "Community Meditation with Meg", "title"],
-                [["community","art"], "write", ["title"]],
-                [["community","art"], "writing", ["title"]],
-                [["community","dance"], "Dance", ["title","description"]],
-                [["community","discussion"], "meetup", ["title","description"]],
-                ["community", "Drawing", ["title","description"]],
-                ["community", "Forum", ["title"]],
-                ["community", "Community Morning", ["title"]],
-                [["community","music"], "Live in da Garden", ["title","description"]],
-                [["community"], "Vegan", ["title","description"]],
-                [["community","ecology"], "Enviromental", ["title","description"]],
-                [["singing"], "karaoke", ["title","description"]],
-                [["yoga"], "yoga", "title"],
-                [["drag"], "drag", "title"],
-                [["movies"], "Bollywood", "title"],
-                [["drag"], "king", "title"],
-                [["invisible"], "chamber", "title"],
-                [["art"], "just femme & dandy", "title"],
-                [["food"], "Brunch Show", "title"],
-                [["drag"], "cabaret", "title"],
-                [["yoga"], "sound bath", "title"],
-                [["invisible"], "financial", "title"],
-                [["invisible"], "team meeting", "title"],
-                [["palestine"], "palestine", "title"],
-                [["theater"], "comedy event", "title"],
-                [["books"], "book", "title"],
-                ["commercial","community"]
-                
-            ]
-        },
+        
         {
             "name": "@rvaqueerbookclub",
             "googleCalendarId": "63b6eb40d80e3feaec30d2d5bfcf3450aeb45bae641366a91c37bbc422be3bb1@group.calendar.google.com",
@@ -270,15 +164,7 @@
                 ["biking"]
             ]
         },
-        {
-            "name": "RVA Roll Patrol",
-            "googleCalendarId": "rva.roll.patrol@gmail.com",
-            "prefixTitle": "🛼",
-            "filters": [
-                ["community"],
-                ["skating"]
-            ]
-        },
+        
         {
             "name": "Rag and Bones Bicycle Cooperative",
             "googleCalendarId": "ragandbonesvolunteers@gmail.com",
@@ -418,64 +304,6 @@
                 ["organizing"],
                 ["volunteering"]
             ]
-        },
-        {
-            "name": "Backyard Art Market by @alaedw on insta!!!!",
-            "googleCalendarId": "backyardartmarket@gmail.com",
-            "prefixTitle": "🛍️🎨 ",
-            "filters": [
-                ["community"],
-                ["art"],
-                ["market"]
-            ]
-        },
-        {
-            "name": "Anyfolk RVA",
-            "googleCalendarId": "e3b3ff88ada63b5664ef49f839af2418d867649f97641fc19f7afab986957439@group.calendar.google.com",
-            "prefixTitle": "🎻🖤 ",
-            "filters": [
-                ["community"],
-                ["art"],
-                ["music"]
-            ]
-        },
-        {
-            "name": "Richmond Cycling Corps ⚫️⚪️🔵",
-            "googleCalendarId": "c_8be5f8a4870dd5c7c18956e5e85e4d7346e27f391f06a7fb7070987ef03795fc@group.calendar.google.com",
-            "prefixTitle": "🚲️ ",
-            "filters": [
-                ["invisible", "undefined", "title"],
-                ["nonprofit"],
-                ["biking"]
-            ]
-        },
-        {
-            "name": "Contributor Cracks Fringe",
-            "googleCalendarId": "cracksfringe@gmail.com",
-            "prefixTitle": "🎭️ ",
-            "filters": [
-                ["community"],
-                ["theater"]
-            ]
-        },
-        {
-            "name": "Contributor Laura Bryant",
-            "googleCalendarId": "36ce8cf59bee050a3596907293a0d7be3c7049b1a9c786769bd5bf4e0111ca86@group.calendar.google.com",
-            "prefixTitle": "🎨🍷 ",
-            "filters": [
-                ["commercial"],
-                ["art"]
-            ]
-        },
-        {
-            "name": "Nowhere Cinema",
-            "googleCalendarId": "welcometonowherecinema@gmail.com",
-            "prefixTitle": "📽️",
-            "suffixDescription": "<br /><a href=\"https://www.instagram.com/nowhere.cinema\">Instagram</a>",
-            "filters": [
-                ["community"],
-                ["movies"]
-            ]
         }
     ],
     "squarespace": [
@@ -491,40 +319,7 @@
         }
     ],
     "elfsight": [
-        {
-            "name": "Studio Two Three",
-            "url": "https://core.service.elfsight.com/p/boot/?page=https%3A%2F%2Fwww.studiotwothree.org%2Fcommunity-events&w=24ddbed9-c732-4102-abd2-02990fae125b",
-            "key": "24ddbed9-c732-4102-abd2-02990fae125b",
-            "prefixTitle": ":studiotwothree:",
-            "eventTypes": [
-                ["Courses and Workshops", "📔"],
-                ["Film Screenings", "📽"],
-                ["Community Events", "🤝"],
-                ["Artist Markets", "🛍️"],
-                ["Private Events", "🔒"],
-                ["Community Organizing Event", "📢"]
-            ],
-            "eventDefault": [
-                "", ""
-            ],
-            "filters": [
-                [["community", "movies"], "Film", ["title","description"]],
-                [["community", "dance"], "dance", ["title"]],
-                ["community", "Community Events", ["title","description"]],
-                [["community","free stuff"], "Creative Mornings", ["title","description"]],
-                [["palestine","community"], "palestine", ["title","description"]],
-                ["free stuff", "clothing swap", ["title","description"]],
-                [["diy"], "Courses and Workshops", ["title","description"]],
-                [["market"], "Artist Markets", ["title","description"]],
-                [["community","organizing"], "Community Organizing Event", ["title","description"]],
-                [["dance"], "Choreo", ["title","description"]],
-                [["invisible"], "Nonprofit ", ["title"]],
-                [["market"], "palooza ", ["title"]],
-                [["ecology"], "pollinator ", ["title"]],
-                [["books"], "book signing ", ["title","description"]],
-                ["commercial","community"]
-            ]
-        },
+        
         {
             "name": "Diversity Richmond",
             "url": "https://core.service.elfsight.com/p/boot/?page=https://www.diversityrichmond.org/events&w=3ef9dd43-ad54-43ff-ae47-41037c180d59",
