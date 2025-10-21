@@ -14,32 +14,34 @@ const emit = defineEmits<{
   'tooltip-leave': []
 }>()
 
-// Debug logging to see what we're getting
-if (props.event && process.env.NODE_ENV === 'development') {
-  console.log('Tooltip event data:', props.event);
-  console.log('Event title:', props.event.title);
-  console.log('Event extendedProps:', props.event.extendedProps);
-}
+// Process event data reactively using computed properties
+const eventTitle = computed(() => {
+  const rawEventTitle = props.event?.title || '';
+  return replaceBadgePlaceholders(rawEventTitle);
+});
 
-// Process event data exactly like EventModal does
-const rawEventTitle = props.event?.title || '';
-const eventTitle = replaceBadgePlaceholders(rawEventTitle);
-const eventTime = props.event && props.event.start 
-  ? props.event.start.toLocaleDateString() + ' @ ' + props.event.start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
-  : '';
-const eventHost = props.event?.extendedProps?.org || '';
-const eventLocation = props.event?.extendedProps?.location || '';
-const rawDescription = props.event?.extendedProps?.description;
-const eventDescription = rawDescription && rawDescription.trim() 
-  ? replaceBadgePlaceholders(sanitizeHtml(rawDescription))
-  : "needs to be added";
+const eventTime = computed(() => {
+  return props.event && props.event.start 
+    ? props.event.start.toLocaleDateString() + ' @ ' + props.event.start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+    : '';
+});
 
-// Get event images
-const eventImages = props.event?.extendedProps?.images || [];
+const eventHost = computed(() => props.event?.extendedProps?.org || '');
+
+const eventLocation = computed(() => props.event?.extendedProps?.location || '');
+
+const eventDescription = computed(() => {
+  const rawDescription = props.event?.extendedProps?.description;
+  return rawDescription && rawDescription.trim() 
+    ? replaceBadgePlaceholders(sanitizeHtml(rawDescription))
+    : "needs to be added";
+});
+
+const eventImages = computed(() => props.event?.extendedProps?.images || []);
 
 // Function to extract image urls and construct proxy URLs
 const getImageUrls = () => {
-  return eventImages.slice(0,3).map(url => `/api/fetchImage?url=${encodeURIComponent(url)}`);
+  return eventImages.value.slice(0,3).map(url => `/api/fetchImage?url=${encodeURIComponent(url)}`);
 };
 
 let errorMessages = ref([]); // To store error messages relating to image display
