@@ -42,17 +42,28 @@ function findImageUrls(description: string): string[] {
 	const matches = description.match(imageUrlRegex);
 	const uniqueMatches = matches ? [...new Set(matches)] : [];
 	
-	// Filter out problematic domains that don't serve raw images
-	const problematicDomains = ['imgur.com', 'i.imgur.com', 'reddit.com', 'redd.it'];
-	const filteredMatches = uniqueMatches.filter(url => {
-		const urlLower = url.toLowerCase();
-		return !problematicDomains.some(domain => urlLower.includes(domain));
+	// Convert Imgur URLs to direct image format
+	const convertedMatches = uniqueMatches.map(url => {
+		// Convert imgur.com/xxxxx.ext to i.imgur.com/xxxxx.ext
+		if (url.includes('imgur.com/') && !url.includes('i.imgur.com/')) {
+			return url.replace('imgur.com/', 'i.imgur.com/');
+		}
+		// For i.imgur.com URLs, ensure they have the direct format
+		if (url.includes('i.imgur.com/')) {
+			// Extract the image ID and extension
+			const match = url.match(/i\.imgur\.com\/([a-zA-Z0-9]+)\.(jpg|jpeg|png|gif|webp)/);
+			if (match) {
+				const [, imageId, extension] = match;
+				return `https://i.imgur.com/${imageId}.${extension}`;
+			}
+		}
+		return url;
 	});
 	
 	console.log('Original image URLs found:', uniqueMatches);
-	console.log('Filtered image URLs:', filteredMatches);
+	console.log('Converted image URLs:', convertedMatches);
 	
-	return filteredMatches || [];
+	return convertedMatches || [];
 }
 
 function formatTitleAndDateToID(inputDate: any, title: string) {

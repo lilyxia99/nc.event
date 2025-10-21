@@ -29,10 +29,21 @@ export default eventHandler(async (event: H3Event) => {
       });
     }
 
+    // Special handling for Imgur URLs
+    const headers = {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+    };
+    
+    // Add referer for Imgur
+    if (url.includes('imgur.com')) {
+      headers['Referer'] = 'https://imgur.com/';
+    }
+
     const response = await axios.get(url, { 
       responseType: "arraybuffer",
       timeout: 10000,
-      maxContentLength: 5 * 1024 * 1024 // 5MB limit
+      maxContentLength: 5 * 1024 * 1024, // 5MB limit
+      headers: headers
     });
 
     // Ensure mime type of the response content will be an image
