@@ -76,8 +76,12 @@ function formatTitleAndDateToID(inputDate: any, title: string) {
   async function fetchGoogleCalendarEvents() {
 	let googleCalendarSources = await useStorage().getItem('googleCalendarSources');
 	try {
+	  console.log('Environment check - API key exists:', !!process.env.GOOGLE_CALENDAR_API_KEY);
+	  console.log('Number of Google Calendar sources to fetch:', eventSourcesJSON.googleCalendar.length);
+	  
 	  if (!process.env.GOOGLE_CALENDAR_API_KEY) {
-		throw new Error('No Google Calendar API key found. Please set the GOOGLE_CALENDAR_API_KEY environment variable.');
+		console.error('No Google Calendar API key found. Please set the GOOGLE_CALENDAR_API_KEY environment variable.');
+		return [];
 	  }
   
 	  googleCalendarSources = await Promise.all(
@@ -96,9 +100,13 @@ function formatTitleAndDateToID(inputDate: any, title: string) {
 		  );
 		  
 		  if (!res.ok) {
-			throw new Error(`Error fetching Google Calendar events for ${source.name}: ${res.status} ${res.statusText}`);
+			console.error(`Error fetching Google Calendar events for ${source.name}: ${res.status} ${res.statusText}`);
+			const errorText = await res.text();
+			console.error('Error response body:', errorText);
+			return { events: [], city: source.city, name: source.name };
 		  }
 		  const data = await res.json()
+		  console.log(`Successfully fetched ${data.items?.length || 0} events from ${source.name}`);
   
 		  const events = data.items.map((item) => {
 			let title = item.summary;
@@ -135,7 +143,9 @@ function formatTitleAndDateToID(inputDate: any, title: string) {
 	  await useStorage().setItem('googleCalendarSources', googleCalendarSources);
 	} catch (e) {
 	  console.error("Error fetching Google Calendar events: ", e);
+	  return [];
 	}
-	return googleCalendarSources;
+	console.log('Returning Google Calendar sources:', googleCalendarSources?.length || 0, 'sources');
+	return googleCalendarSources || [];
   }
   
