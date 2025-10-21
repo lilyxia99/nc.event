@@ -11,6 +11,7 @@ import { ModalsContainer, useModal } from 'vue-final-modal'
 import FilterModal from './FilterModal.vue'
 import EventModal from './EventModal.vue'
 import EventTooltip from './EventTooltip.vue'
+import DraggableEventWindow from './DraggableEventWindow.vue'
 import { clientCacheMaxAgeSeconds, clientStaleWhileInvalidateSeconds } from '~~/utils/util';
 import { replaceBadgePlaceholders } from '~~/utils/util';
 import { type CalendarOptions, type EventClickArg, type EventSourceInput } from '@fullcalendar/core/index.js';
@@ -26,6 +27,11 @@ const tooltipEvent = ref(null);
 const tooltipX = ref(0);
 const tooltipY = ref(0);
 let tooltipTimeout = null;
+
+// Free drag mode state
+const isFreeDragMode = ref(false);
+const draggableWindows = ref(new Map());
+let windowCounter = 0;
 
 // Handle tooltip mouse events
 const handleTooltipEnter = () => {
@@ -169,6 +175,45 @@ const { open: openEventModal, close: closeEventModal } = useModal({
   },
 })
 
+// Free drag window management
+const createDraggableWindow = (event, x, y) => {
+  const windowId = `window-${++windowCounter}`;
+  draggableWindows.value.set(windowId, {
+    event: event.event,
+    x: x,
+    y: y,
+    id: windowId
+  });
+};
+
+const closeDraggableWindow = (windowId) => {
+  draggableWindows.value.delete(windowId);
+};
+
+const closeAllDraggableWindows = () => {
+  draggableWindows.value.clear();
+};
+
+// Toggle free drag mode
+const toggleFreeDragMode = () => {
+  isFreeDragMode.value = !isFreeDragMode.value;
+  if (!isFreeDragMode.value) {
+    closeAllDraggableWindows();
+  }
+  
+  // Update button appearance
+  nextTick(() => {
+    const freeDragButton = document.querySelector('.fc-freeDrag-button');
+    if (freeDragButton) {
+      if (isFreeDragMode.value) {
+        freeDragButton.classList.add('fc-button-active');
+      } else {
+        freeDragButton.classList.remove('fc-button-active');
+      }
+    }
+  });
+};
+
 calendarOptions.value = {
   plugins: [dayGridPlugin, timeGridPlugin, listPlugin],
   initialView: getWindowWidth() <= 600 ? 'listMonth' : 'dayGridMonth',
@@ -187,9 +232,13 @@ calendarOptions.value = {
       text: 'filter',
       click: openFilterModal,
     },
+    freeDrag: {
+      text: 'free drag',
+      click: toggleFreeDragMode,
+    },
   },
   headerToolbar: {
-    left: 'prev today filter',
+    left: 'prev today filter freeDrag',
     center: 'title',
     right: 'dayGridMonth,listMonth next'
   },
@@ -206,8 +255,15 @@ calendarOptions.value = {
 
   eventClick: function (event) {
     event.jsEvent.preventDefault(); // Prevent the default behavior of clicking a link
-    clickedEvent.value = event;
-    openEventModal();
+    
+    if (isFreeDragMode.value) {
+      // Create draggable window at click position
+      createDraggableWindow(event, event.jsEvent.clientX, event.jsEvent.clientY);
+    } else {
+      // Use normal modal
+      clickedEvent.value = event;
+      openEventModal();
+    }
   },
 
   eventMouseEnter: function(info) {
@@ -461,11 +517,23 @@ const transformEventSourcesResponse = (eventSources: Ref<Record<string, any>>) =
   <ModalsContainer />
   <EventTooltip 
     :event="tooltipEvent" 
-    :visible="tooltipVisible" 
+    :visible="tooltipVisible && !isFreeDragMode" 
     :x="tooltipX" 
     :y="tooltipY" 
     @tooltip-enter="handleTooltipEnter"
     @tooltip-leave="handleTooltipLeave"
+  />
+  
+  <!-- Draggable Windows -->
+  <DraggableEventWindow
+    v-for="window in draggableWindows.values()"
+    :key="window.id"
+    :event="window.event"
+    :window-id="window.id"
+    :initial-x="window.x"
+    :initial-y="window.y"
+    @close="closeDraggableWindow"
+    @minimize="() => {}"
   />
   <div class="calendar-container">
     <table style="width:100%;">

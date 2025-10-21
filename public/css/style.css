@@ -254,6 +254,13 @@ div.fc-scrollgrid-sync-inner:not(.fc-daygrid-day-frame) {
     var(--button-hover-bezel);
 }
 
+/* Free drag button styling */
+.fc-freeDrag-button.fc-button-active {
+  background-color: var(--rip-green) !important;
+  border-color: var(--rip-green) !important;
+  color: var(--text-white) !important;
+}
+
 /* Hide only visually, but have it available for screenreaders & for SEO purposes. See h5bp.com/v */
 .visuallyhidden {
   border: 0;
