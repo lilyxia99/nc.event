@@ -9,21 +9,28 @@ const props = defineProps<{
   y: number
 }>()
 
+// Debug logging to see what we're getting
+if (props.event && process.env.NODE_ENV === 'development') {
+  console.log('Tooltip event data:', props.event);
+  console.log('Event title:', props.event.title);
+  console.log('Event extendedProps:', props.event.extendedProps);
+}
+
 // Process event data similar to EventModal with null checks
-const eventTitle = props.event ? replaceBadgePlaceholders(props.event.title) : '';
+const eventTitle = props.event ? replaceBadgePlaceholders(props.event.title) : 'No title';
 const eventTime = props.event && props.event.start 
   ? props.event.start.toLocaleDateString() + ' @ ' + props.event.start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
-  : '';
-const eventHost = props.event?.extendedProps?.org || '';
-const eventLocation = props.event?.extendedProps?.location || '';
+  : 'No time specified';
+const eventHost = props.event?.extendedProps?.org || 'No host specified';
+const eventLocation = props.event?.extendedProps?.location || 'No location specified';
 const rawDescription = props.event?.extendedProps?.description;
 const eventDescription = rawDescription && rawDescription.trim() 
   ? replaceBadgePlaceholders(sanitizeHtml(rawDescription))
   : "needs to be added";
 
-// Truncate description for preview
-const truncatedDescription = eventDescription.length > 200 
-  ? eventDescription.substring(0, 200) + '...' 
+// Truncate description for preview but keep it readable
+const truncatedDescription = eventDescription.length > 300 
+  ? eventDescription.substring(0, 300) + '...' 
   : eventDescription;
 </script>
 
@@ -46,7 +53,7 @@ const truncatedDescription = eventDescription.length > 200
         <span class="tooltip-label">Event Host:</span> 
         <span class="tooltip-host">{{ eventHost }}</span>
       </div>
-      <div class="tooltip-section">
+      <div class="tooltip-section" v-if="eventLocation">
         <span class="tooltip-label">Event Location:</span> 
         <span class="tooltip-location">{{ eventLocation }}</span>
       </div>
