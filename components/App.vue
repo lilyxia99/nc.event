@@ -10,6 +10,7 @@ import FullCalendar from '@fullcalendar/vue3'
 import { ModalsContainer, useModal } from 'vue-final-modal'
 import FilterModal from './FilterModal.vue'
 import EventModal from './EventModal.vue'
+import EventTooltip from './EventTooltip.vue'
 import { clientCacheMaxAgeSeconds, clientStaleWhileInvalidateSeconds } from '~~/utils/util';
 import { replaceBadgePlaceholders } from '~~/utils/util';
 import { type CalendarOptions, type EventClickArg, type EventSourceInput } from '@fullcalendar/core/index.js';
@@ -18,6 +19,13 @@ import { getAllTags } from '@/server/tagsListServe'; //Function that gives all t
 
 const clickedEvent: Ref<EventClickArg | null> = ref(null); // For storing the clickedEvent data
 const calendarRef = ref(null); // Ref for the FullCalendar instance
+
+// Tooltip state
+const tooltipVisible = ref(false);
+const tooltipEvent = ref(null);
+const tooltipX = ref(0);
+const tooltipY = ref(0);
+let tooltipTimeout = null;
 const tags = ref(getAllTags()); // Ref for serving a full list of tags found in event_sources.json
 provide('tags', tags); //Serves the tags array globally, allowing it to be accessed in FilterModal.vue
 
@@ -186,6 +194,30 @@ calendarOptions.value = {
     event.jsEvent.preventDefault(); // Prevent the default behavior of clicking a link
     clickedEvent.value = event;
     openEventModal();
+  },
+
+  eventMouseEnter: function(info) {
+    // Clear any existing timeout
+    if (tooltipTimeout) {
+      clearTimeout(tooltipTimeout);
+    }
+    
+    // Show tooltip after a short delay
+    tooltipTimeout = setTimeout(() => {
+      tooltipEvent.value = info.event;
+      tooltipX.value = info.jsEvent.clientX + 10;
+      tooltipY.value = info.jsEvent.clientY + 10;
+      tooltipVisible.value = true;
+    }, 500); // 500ms delay
+  },
+
+  eventMouseLeave: function() {
+    // Clear timeout and hide tooltip
+    if (tooltipTimeout) {
+      clearTimeout(tooltipTimeout);
+      tooltipTimeout = null;
+    }
+    tooltipVisible.value = false;
   },
 
   progressiveEventRendering: true, // More re-renders; not batched. Needs further testing.
@@ -410,6 +442,12 @@ const transformEventSourcesResponse = (eventSources: Ref<Record<string, any>>) =
 
 <template>
   <ModalsContainer />
+  <EventTooltip 
+    :event="tooltipEvent" 
+    :visible="tooltipVisible" 
+    :x="tooltipX" 
+    :y="tooltipY" 
+  />
   <div class="calendar-container">
     <table style="width:100%;">
       <tbody>
