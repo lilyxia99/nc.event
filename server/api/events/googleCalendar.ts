@@ -41,7 +41,18 @@ function findImageUrls(description: string): string[] {
 	const imageUrlRegex = /(https?:\/\/[^\s"<>]+?\.(jpg|jpeg|png|gif|bmp|svg|webp))/g;
 	const matches = description.match(imageUrlRegex);
 	const uniqueMatches = matches ? [...new Set(matches)] : [];
-	return uniqueMatches || [];
+	
+	// Filter out problematic domains that don't serve raw images
+	const problematicDomains = ['imgur.com', 'i.imgur.com', 'reddit.com', 'redd.it'];
+	const filteredMatches = uniqueMatches.filter(url => {
+		const urlLower = url.toLowerCase();
+		return !problematicDomains.some(domain => urlLower.includes(domain));
+	});
+	
+	console.log('Original image URLs found:', uniqueMatches);
+	console.log('Filtered image URLs:', filteredMatches);
+	
+	return filteredMatches || [];
 }
 
 function formatTitleAndDateToID(inputDate: any, title: string) {
