@@ -481,7 +481,7 @@ body.no-scroll {
 
 .event-details {
   color: var(--text-normal);
-  font-family:ChicagoFLF,Times New Roman,Georgia,serif;
+  font-family: var(--body-font);
   font-size:14px;
 }
 
