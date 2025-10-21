@@ -9,6 +9,11 @@ const props = defineProps<{
   y: number
 }>()
 
+const emit = defineEmits<{
+  'tooltip-enter': []
+  'tooltip-leave': []
+}>()
+
 // Debug logging to see what we're getting
 if (props.event && process.env.NODE_ENV === 'development') {
   console.log('Tooltip event data:', props.event);
@@ -22,16 +27,31 @@ const eventTime = props.event && props.event.start
   ? props.event.start.toLocaleDateString() + ' @ ' + props.event.start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
   : 'No time specified';
 const eventHost = props.event?.extendedProps?.org || 'No host specified';
-const eventLocation = props.event?.extendedProps?.location || 'No location specified';
+const eventLocation = props.event?.extendedProps?.location || '';
 const rawDescription = props.event?.extendedProps?.description;
 const eventDescription = rawDescription && rawDescription.trim() 
   ? replaceBadgePlaceholders(sanitizeHtml(rawDescription))
   : "needs to be added";
 
-// Truncate description for preview but keep it readable
-const truncatedDescription = eventDescription.length > 300 
-  ? eventDescription.substring(0, 300) + '...' 
-  : eventDescription;
+// Get event images
+const eventImages = props.event?.extendedProps?.images || [];
+
+// Function to extract image urls and construct proxy URLs
+const getImageUrls = () => {
+  return eventImages.slice(0,3).map(url => `/api/fetchImage?url=${encodeURIComponent(url)}`);
+};
+
+let errorMessages = ref([]); // To store error messages relating to image display
+
+const handleImageError = (index) => {
+  errorMessages.value[index] = `Failed to load image ${index + 1}.`;
+};
+
+// For displaying multiple images
+const getImageClass = (index) => {
+  const classes = ['single', 'double', 'triple'];
+  return classes[index] || '';
+};
 </script>
 
 <template>
@@ -39,6 +59,8 @@ const truncatedDescription = eventDescription.length > 300
     v-if="visible && event" 
     class="event-tooltip"
     :style="{ left: x + 'px', top: y + 'px' }"
+    @mouseenter="$emit('tooltip-enter')"
+    @mouseleave="$emit('tooltip-leave')"
   >
     <div class="tooltip-content">
       <div class="tooltip-section">
@@ -53,13 +75,40 @@ const truncatedDescription = eventDescription.length > 300
         <span class="tooltip-label">Event Host:</span> 
         <span class="tooltip-host">{{ eventHost }}</span>
       </div>
-      <div class="tooltip-section" v-if="eventLocation">
+      <div class="tooltip-section" v-if="eventLocation && eventLocation !== 'No location specified'">
         <span class="tooltip-label">Event Location:</span> 
         <span class="tooltip-location">{{ eventLocation }}</span>
       </div>
+      
+      <!-- Display Images only if there are images -->
+      <div v-if="eventImages && eventImages.length > 0" class="tooltip-section">
+        <span class="tooltip-label">Event Images:</span>
+        <div class="image-container">
+          <div 
+            class="image-wrapper"
+            v-for="(url, index) in getImageUrls()" 
+            :key="index"
+          >
+            <!-- Check if there's an error message for this image, if so, display the message instead of image -->
+            <div v-if="errorMessages[index]">
+              {{ errorMessages[index] }}
+            </div>   
+            <!-- If there's no error message, render the image as usual --> 
+            <img
+              class="event-image"
+              v-else
+              :src="url"
+              :class="getImageClass(index)"
+              @error="handleImageError(index)"
+              alt="Image found within the description of this calendar event"
+            />
+          </div>
+        </div>
+      </div>
+      
       <div class="tooltip-section">
         <span class="tooltip-label">Event Description:</span>
-        <div class="tooltip-description" v-html="truncatedDescription"></div>
+        <div class="tooltip-description" v-html="eventDescription"></div>
       </div>
     </div>
   </div>
@@ -69,10 +118,11 @@ const truncatedDescription = eventDescription.length > 300
 .event-tooltip {
   position: fixed;
   z-index: 1000;
-  pointer-events: none;
-  max-width: 350px;
-  max-height: 400px;
+  pointer-events: auto;
+  max-width: 400px;
+  max-height: 500px;
   overflow-y: auto;
+  transform: translate(-10px, -10px); /* Position tooltip slightly offset from cursor */
 }
 
 .tooltip-content {
@@ -117,9 +167,51 @@ const truncatedDescription = eventDescription.length > 300
 
 .tooltip-description {
   line-height: 1.4;
-  max-height: 150px;
-  overflow: hidden;
   color: var(--text-normal);
   margin-top: 4px;
+}
+
+/* Image styles - reuse from EventModal */
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.event-image {
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 2%;
+  border: 2px solid var(--button-hover);
+  margin: auto;
+}
+
+/* Styles for image-wrapper when there is only one image */
+.image-container .image-wrapper:first-of-type:nth-last-of-type(1) {
+  width: 95%;
+}
+
+/* Styles for the image wrappers when there are two images */
+.image-container .image-wrapper:first-of-type:nth-last-of-type(2),
+.image-container .image-wrapper:last-of-type:nth-of-type(2) {
+  width: calc(48% - 5px);
+  margin-right: 5px;
+  margin-left: 5px;
+  box-sizing: border-box;
+}
+
+/* Styles for the image wrappers when there are three images */
+.image-container .image-wrapper:nth-of-type(n+2):nth-of-type(-n+3) {
+  width: calc(48% - 10px);
+  margin-right: 5px;
+  margin-left: 5px;
+  box-sizing: border-box;
+}
+
+.image-container .image-wrapper:first-of-type:nth-last-of-type(3) {
+  width: 95%;
 }
 </style>

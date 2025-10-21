@@ -26,6 +26,20 @@ const tooltipEvent = ref(null);
 const tooltipX = ref(0);
 const tooltipY = ref(0);
 let tooltipTimeout = null;
+
+// Handle tooltip mouse events
+const handleTooltipEnter = () => {
+  // Clear any pending hide timeout when mouse enters tooltip
+  if (tooltipTimeout) {
+    clearTimeout(tooltipTimeout);
+    tooltipTimeout = null;
+  }
+};
+
+const handleTooltipLeave = () => {
+  // Hide tooltip when mouse leaves tooltip
+  tooltipVisible.value = false;
+};
 const tags = ref(getAllTags()); // Ref for serving a full list of tags found in event_sources.json
 provide('tags', tags); //Serves the tags array globally, allowing it to be accessed in FilterModal.vue
 
@@ -205,8 +219,8 @@ calendarOptions.value = {
     // Show tooltip after a short delay
     tooltipTimeout = setTimeout(() => {
       tooltipEvent.value = info.event;
-      tooltipX.value = info.jsEvent.clientX + 10;
-      tooltipY.value = info.jsEvent.clientY + 10;
+      tooltipX.value = info.jsEvent.clientX;
+      tooltipY.value = info.jsEvent.clientY;
       tooltipVisible.value = true;
     }, 500); // 500ms delay
   },
@@ -217,7 +231,10 @@ calendarOptions.value = {
       clearTimeout(tooltipTimeout);
       tooltipTimeout = null;
     }
-    tooltipVisible.value = false;
+    // Don't immediately hide - let tooltip mouse events handle it
+    tooltipTimeout = setTimeout(() => {
+      tooltipVisible.value = false;
+    }, 100); // Small delay to allow moving to tooltip
   },
 
   progressiveEventRendering: true, // More re-renders; not batched. Needs further testing.
@@ -447,6 +464,8 @@ const transformEventSourcesResponse = (eventSources: Ref<Record<string, any>>) =
     :visible="tooltipVisible" 
     :x="tooltipX" 
     :y="tooltipY" 
+    @tooltip-enter="handleTooltipEnter"
+    @tooltip-leave="handleTooltipLeave"
   />
   <div class="calendar-container">
     <table style="width:100%;">
