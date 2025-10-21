@@ -21,12 +21,13 @@ if (props.event && process.env.NODE_ENV === 'development') {
   console.log('Event extendedProps:', props.event.extendedProps);
 }
 
-// Process event data similar to EventModal with null checks
-const eventTitle = props.event ? replaceBadgePlaceholders(props.event.title) : 'No title';
+// Process event data exactly like EventModal does
+const rawEventTitle = props.event?.title || '';
+const eventTitle = replaceBadgePlaceholders(rawEventTitle);
 const eventTime = props.event && props.event.start 
   ? props.event.start.toLocaleDateString() + ' @ ' + props.event.start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
-  : 'No time specified';
-const eventHost = props.event?.extendedProps?.org || 'No host specified';
+  : '';
+const eventHost = props.event?.extendedProps?.org || '';
 const eventLocation = props.event?.extendedProps?.location || '';
 const rawDescription = props.event?.extendedProps?.description;
 const eventDescription = rawDescription && rawDescription.trim() 
@@ -71,11 +72,11 @@ const getImageClass = (index) => {
         <span class="tooltip-label">Event Time:</span> 
         <span class="tooltip-time">{{ eventTime }}</span>
       </div>
-      <div class="tooltip-section">
+      <div class="tooltip-section" v-if="eventHost">
         <span class="tooltip-label">Event Host:</span> 
         <span class="tooltip-host">{{ eventHost }}</span>
       </div>
-      <div class="tooltip-section" v-if="eventLocation && eventLocation !== 'No location specified'">
+      <div class="tooltip-section" v-if="eventLocation">
         <span class="tooltip-label">Event Location:</span> 
         <span class="tooltip-location">{{ eventLocation }}</span>
       </div>
