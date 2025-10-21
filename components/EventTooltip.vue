@@ -124,19 +124,44 @@ const getImageClass = (index) => {
   pointer-events: auto;
   max-width: 400px;
   max-height: 500px;
-  overflow-y: auto;
   transform: translate(5px, 5px); /* Position tooltip closer to cursor */
-}
-
-.tooltip-content {
   background: var(--background-alt);
   border: 1px solid var(--border-outer);
   border-radius: 4px;
-  padding: 12px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  overflow: hidden; /* Hide overflow to contain scrollbar within border */
+}
+
+.tooltip-content {
+  padding: 12px;
   font-family: var(--body-font);
   font-size: 12px;
   color: var(--text-normal);
+  max-height: 476px; /* 500px - 24px for padding */
+  overflow-y: auto;
+  /* Custom scrollbar styling */
+  scrollbar-width: thin;
+  scrollbar-color: var(--button-hover) var(--background-inner);
+}
+
+/* Webkit scrollbar styling for better appearance */
+.tooltip-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.tooltip-content::-webkit-scrollbar-track {
+  background: var(--background-inner);
+  border-radius: 4px;
+}
+
+.tooltip-content::-webkit-scrollbar-thumb {
+  background: var(--button-hover);
+  border-radius: 4px;
+  border: 1px solid var(--border-outer);
+}
+
+.tooltip-content::-webkit-scrollbar-thumb:hover {
+  background: var(--button-select);
 }
 
 .tooltip-section {
