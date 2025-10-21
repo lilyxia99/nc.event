@@ -64,8 +64,8 @@ const getImageClass = (index) => {
       <span v-if="isDevelopment"> <span class="event-headers">Event Tags: </span> {{ eventTags }}<br> </span>
       <span v-if="isDevelopment && eventURL"> <span class="event-headers">Event URL:</span> <a :href="eventURL" target="_blank">Here</a><br> </span>
       <span class="event-headers">Event Location:</span> <a :href="createGoogleMapsURL(eventLocation)" target="_blank">{{ eventLocation }}</a><br>
-      <!-- Display Images -->
-      <div class="image-container">
+      <!-- Display Images only if there are images -->
+      <div v-if="eventImages && eventImages.length > 0" class="image-container">
         <div 
           class="image-wrapper"
           v-for="(url, index) in getImageUrls()" 
