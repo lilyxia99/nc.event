@@ -22,7 +22,10 @@ const eventHost = props.event.event.extendedProps.org;
 const eventURL = props.event.event.url;
 const eventID = props.event.event.id;
 const eventLocation = props.event.event.extendedProps.location;
-const eventDescription = replaceBadgePlaceholders(sanitizeHtml(props.event.event.extendedProps.description));
+const rawDescription = props.event.event.extendedProps.description;
+const eventDescription = rawDescription && rawDescription.trim() 
+  ? replaceBadgePlaceholders(sanitizeHtml(rawDescription))
+  : "needs to be added";
 const eventImages = props.event.event.extendedProps.images;
 const eventTags = props.event.event.extendedProps.tags;
 
