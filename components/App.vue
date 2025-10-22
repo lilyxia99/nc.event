@@ -563,29 +563,20 @@ const transformEventSourcesResponse = (eventSources: Ref<Record<string, any>>) =
     <FullCalendar ref="calendarRef" :options='calendarOptions' />
     <div style="display: flex; align-items: center; flex-direction: row;">
       <div class="desc" style="padding-bottom: 0;">
-        <p>rva.rip was built with the personal hope that no person in richmond should be without community. The site will
-          always be free, without frills, and remain a public utility. The events here are drawn from various 
-          <a href="https://github.com/natviii/rva.rip/blob/main/assets/event_sources.json">organizer listings</a> that
-          contributors (thank you!) have provided. Building community is the focus of this project. If you'd like to become
-          a contributor of events, check out our contributing guide <a href="/contributing">here</a>! The events presented here are in a
-          constant state of community-based vetting; don't hesitate to provide feedback! For suggestions and questions
-          email <a href="mailto:host@rva.rip">host@rva.rip</a> &lt;3</p>
+        <p>triad.built is a forever free commual calendar for folks to find and create community! As a new GSOer I hope to connect with you in this way too :P. The events here are drawn from various 
+          <a href="https://github.com/lilyxia99/triad.build/blob/main/assets/event_sources.json">organizer listings</a> that
+          contributors (thank you!) have provided. I hope you be encouraged to build your own community too! If you'd like to become
+          a contributor of events, check out our contributing guide <a href="/contributing">here</a>! The events presented here are in a constant state of community-based vetting; don't hesitate to provide feedback! For suggestions and questions
+          email <a href="mailto:leileixiawork@gmail.com">leileixiawork@gmail.com</a> </p>
         <p>Before making plans, consider checking with venue staff or event organizers directly. This site is not
           affiliated with any events listed.</p>
-        <p>Still can't figure out what to do? 
-          <ul style="line-height: 1.5em">
-            <li>Bored? Roll up to <a href="https://goo.gl/maps/7hE5ARFYcE7KTgun7">scuff</a> and say hi to the punks</li>
-            <li>Looking for music? Check out <a href="https://www.restlessrva.com/">restless</a> for local concerts happening. </li>
-            <li>Like sports? Sign up for <a href="https://stonewallrichmond.leagueapps.com/leagues/">stonewall sports</a>!!! Hot athletic gays!!!!!</li>
-            <li>Don't wanna go outside? Play <a href="https://play.half.earth//">half earth socialism</a>!!!</li>
-            <li>Wanna find more groups? Check out our <a href="/list">list of organizations and groups</a> in RVA</li>
-          </ul></p>
-        <p>Not in Richmond??? Check out our sibling sites <a href="https://anarchism.nyc/">anarchism.nyc</a>, 
-        <a href="https://bay.lgbt/">bay.lgbt</a>, and <a href="https://anarchism.boston/">anarchism.boston</a>.
-        This site wouldn't exist without them, and we're all run by trans folks.</p>
+
+        <p> Check out our sibling sites <a href="https://anarchism.nyc/">anarchism.nyc</a>, 
+        <a href="https://bay.lgbt/">bay.lgbt</a>, and <a href="https://anarchism.boston/">anarchism.boston</a>, <a href="https://rva.rip/">rva.rip</a>.
+        This site is a fork from rva.rip, which is forked from the other predecessors. triad.build wouldn't exist without them, and we're all run by LGBTQ+ folks.</p>
         <p>Want your event listed here? Start making a <a href="/contributing">public google calendar</a> for your events. 
           Once published, request inclusion of your event feed by sending your Google Calendar ID via a 
-          <a href="https://github.com/natviii/rva.rip/issues">new GitHub issue</a> or by emailing me at host@rva.rip! 
+          <a href="https://github.com/lilyxia99/triad.build/issues">new GitHub issue</a> or by emailing me at leileixiawork@gmail.com! 
           You may also provide feedback, fixes, or improvements through either means</p>
       </div>
     </div>

@@ -8,14 +8,14 @@
 
 :root {
     color-scheme: light;
-    --background: #faf9f6;
-    --background-alt: #ccc;
-    --background-inner: #ddd;
+    --background: #fff4d2;
+    --background-alt: #ffb0b0;
+    --background-inner: #ffcaca;
     --background-today: #8fdf82;
     --border-outer: #000;
     --border-inner: #fff;
-    --button-hover: #64707b;
-    --button-select: #1a252f;
+    --button-hover: #1f4c04;
+    --button-select: #560101;
     --text-normal: #000;
     --text-opp: #fff;
     --text-faded: #aaa;
